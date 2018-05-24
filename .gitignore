@@ -1,0 +1,7 @@
+# Go
+.idea/
+bin/
+
+# thrift
+example*
+gen-go/
