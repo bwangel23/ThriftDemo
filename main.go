@@ -9,14 +9,14 @@ import (
 )
 
 func Usage() {
-	fmt.Fprintf(os.Stderr, "Usage of %s:\n", os.Args[0])
+	fmt.Fprintf(os.Stderr, "Usage of RPCDemo:\n")
 	flag.PrintDefaults()
 	fmt.Fprintf(os.Stderr, "\n")
 }
 
 func main() {
 	flag.Usage = Usage
-	addr := flag.String("addr", "localhost:8080", "Address to listen to")
+	addr := flag.String("addr", "0.0.0.0:8080", "Address to listen to")
 	server := flag.Bool("server", false, "Running Server")
 	protocol := flag.String("P", "binary", "Specify the protocol (binary, compact, json, simplejson)")
 	buffered := flag.Bool("buffered", false, "Use the buffered transport")
@@ -26,7 +26,7 @@ func main() {
 
 	var protocolFactory thrift.TProtocolFactory
 	switch *protocol {
-	case "binary":
+	case "binary", "":
 		protocolFactory = thrift.NewTBinaryProtocolFactoryDefault()
 	case "compact":
 		protocolFactory = thrift.NewTCompactProtocolFactory()
