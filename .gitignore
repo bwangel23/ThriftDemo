@@ -3,5 +3,5 @@
 bin/
 
 # thrift
-example*
-gen-go/
+vendor/shared/
+vendor/tutorial/
