@@ -5,3 +5,8 @@ bin/
 # thrift
 vendor/shared/
 vendor/tutorial/
+
+# Python
+__pycache__/
+*.py[cod]
+*venv/

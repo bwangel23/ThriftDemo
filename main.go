@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 	"log"
-	"git.apache.org/thrift.git/lib/go/thrift"
 )
 
 func Usage() {
@@ -16,19 +15,13 @@ func Usage() {
 
 func main() {
 	flag.Usage = Usage
-	addr := flag.String("addr", "0.0.0.0:8080", "Address to listen to")
-	server := flag.Bool("server", false, "Running Server")
+	addr := flag.String("addr", "0.0.0.0:8080", "RPC Service Address")
+	webAddr := flag.String("web-addr", "0.0.0.0:8000", "Web Socket Address to listen")
 	flag.Parse()
 
+	fmt.Println(*addr, *webAddr)
 
-	protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
-	transportFactory := thrift.NewTBufferedTransportFactory(8192)
-
-	if *server {
-		// pass
-	} else {
-		if err := runClient(transportFactory, protocolFactory, *addr); err != nil {
-			log.Fatalln("error running client", err)
-		}
+	if err := ServeWeb(*webAddr); err != nil {
+		log.Fatalln("Serve Web", err)
 	}
 }

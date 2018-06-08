@@ -34,4 +34,3 @@ if __name__ == '__main__':
     cli.add_command(recreatedb)
     cli.add_command(runserver)
     cli()
-

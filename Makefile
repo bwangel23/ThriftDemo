@@ -2,7 +2,7 @@ SHELL=/bin/bash
 
 .PHONY: gen-go
 
-gofiles = main.go client.go common.go
+gofiles = main.go client.go common.go web.go
 thriftFiles = user
 
 #下面这条命令可以获取到所有 thrift 文件的名字，但是目前还无法让bash执行结果输出到 Makefile 的数组中

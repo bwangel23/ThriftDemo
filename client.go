@@ -33,7 +33,10 @@ func handleClient(client *user.UserActivityClient) error {
 	return err
 }
 
-func runClient(transportFactory thrift.TTransportFactory, protocolFactory thrift.TProtocolFactory, addr string) error {
+func runClient(addr string) error {
+	protocolFactory := thrift.NewTBinaryProtocolFactoryDefault()
+	transportFactory := thrift.NewTBufferedTransportFactory(8192)
+
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	tSocket, err := thrift.NewTSocket(addr)
 	if err != nil {
